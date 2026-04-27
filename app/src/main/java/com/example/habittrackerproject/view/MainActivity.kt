@@ -18,4 +18,17 @@ class MainActivity : AppCompatActivity() {
             insets
         }
     }
+    companion object {
+        var isVisible = false
+    }
+
+    override fun onStart() {
+        super.onStart()
+        isVisible = true
+    }
+
+    override fun onStop() {
+        super.onStop()
+        isVisible = false
+    }
 }
