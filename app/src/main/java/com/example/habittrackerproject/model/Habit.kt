@@ -1,4 +1,4 @@
-package com.example.habittrackerproject.view
+package com.example.habittrackerproject.model
 
 data class Habit(
     val id: String,

@@ -1,12 +1,12 @@
-package com.example.habittrackerproject.view
+package com.example.habittrackerproject.network
 
 import android.content.Context
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
+import com.example.habittrackerproject.model.Habit
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.example.habittrackerproject.view.Habit
 
 object ApiService {
 

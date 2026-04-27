@@ -1,6 +1,8 @@
 package com.example.habittrackerproject.view
 
 import android.content.Context
+import com.example.habittrackerproject.model.Habit
+import com.example.habittrackerproject.network.ApiService
 
 class Repository {
 

@@ -1,4 +1,4 @@
-package com.example.habittrackerproject.view
+package com.example.habittrackerproject.network
 
 import android.content.Context
 import com.android.volley.RequestQueue

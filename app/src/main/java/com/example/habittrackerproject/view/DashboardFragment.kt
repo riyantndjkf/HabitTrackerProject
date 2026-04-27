@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.habittrackerproject.R
-import com.example.habittrackerproject.view.ApiService
+import com.example.habittrackerproject.network.ApiService
 
 class DashboardFragment : Fragment() {
     override fun onCreateView(
