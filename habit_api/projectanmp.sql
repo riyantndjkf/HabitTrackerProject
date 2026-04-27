@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2026 at 07:28 AM
+-- Generation Time: Apr 27, 2026 at 10:05 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.30
 
@@ -42,7 +42,8 @@ CREATE TABLE `habits` (
 --
 
 INSERT INTO `habits` (`id`, `title`, `description`, `target`, `progress`, `icon`, `status`) VALUES
-(1, 'Minum Air', 'Minum 2 liter air setiap hari', 7, 3, '💧', 'in_progress');
+(1, 'Minum Air', 'Minum 2 liter air setiap hari', 7, 2, 'water', 'In Progress'),
+(2, 'Makan ', 'Makan ayam 5 kali seminggu', 5, 5, 'food', 'Completed');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +63,7 @@ ALTER TABLE `habits`
 -- AUTO_INCREMENT for table `habits`
 --
 ALTER TABLE `habits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
