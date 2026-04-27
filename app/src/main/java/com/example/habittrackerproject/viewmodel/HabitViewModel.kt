@@ -18,4 +18,8 @@ class HabitViewModel(application: Application) : AndroidViewModel(application) {
         ApiService.updateHabit(getApplication(), habit)
         refresh()
     }
+    fun addHabit(habit: Habit) {
+        ApiService.addHabit(getApplication(), habit)
+        refresh()
+    }
 }

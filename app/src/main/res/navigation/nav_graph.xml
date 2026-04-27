@@ -27,5 +27,9 @@
         android:id="@+id/createHabitFragment"
         android:name="com.example.habittrackerproject.view.CreateHabitFragment"
         android:label="fragment_create_habit"
-        tools:layout="@layout/fragment_create_habit" />
+        tools:layout="@layout/fragment_create_habit" >
+        <action
+            android:id="@+id/action_createHabitFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
+    </fragment>
 </navigation>

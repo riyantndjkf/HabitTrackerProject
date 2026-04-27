@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.habittrackerproject.databinding.FragmentDashboardBinding
 import com.example.habittrackerproject.viewmodel.HabitViewModel
@@ -39,7 +39,7 @@ class DashboardFragment : Fragment() {
         observeViewModel()
         binding.fabAdd.setOnClickListener {
             val action = DashboardFragmentDirections.actionDashboardFragmentToCreateHabitFragment()
-            it.findNavController().navigate(action)
+            findNavController().navigate(action)
         }
     }
 

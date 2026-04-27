@@ -33,13 +33,13 @@
                 android:layout_marginBottom="16dp" />
 
             <EditText
-                android:id="@+id/etHabitName"
+                android:id="@+id/txtTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Habit Name *" />
 
             <EditText
-                android:id="@+id/etDescription"
+                android:id="@+id/txtDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Short Description *"
@@ -47,7 +47,7 @@
                 android:minLines="2" />
 
             <EditText
-                android:id="@+id/etGoal"
+                android:id="@+id/txtTarget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Goal *"
@@ -75,7 +75,7 @@
                 android:src="@drawable/ic_default_habit" />
 
             <Button
-                android:id="@+id/btnCreateHabit"
+                android:id="@+id/btnSave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Create Habit"
