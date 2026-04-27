@@ -28,10 +28,19 @@ class CreateHabitFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(HabitViewModel::class.java)
+        val iconList = arrayOf("water", "dumbbell", "book", "meditation", "game", "food")
+        val spinnerAdapter = android.widget.ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            iconList
+        )
+        binding.spCategory.adapter = spinnerAdapter
         binding.btnSave.setOnClickListener {
             val title = binding.txtTitle.text.toString()
             val description = binding.txtDescription.text.toString()
             val targetStr = binding.txtTarget.text.toString()
+            val selectedIcon = binding.spCategory.selectedItem.toString()
+
             if (title.isNotEmpty() && targetStr.isNotEmpty()) {
                 val newHabit = Habit(
                     id = "",
@@ -39,15 +48,13 @@ class CreateHabitFragment : Fragment() {
                     description = description,
                     target = targetStr.toInt(),
                     progress = 0,
-                    icon = "default_icon",
+                    icon = selectedIcon,
                     status = "In Progress"
                 )
                 viewModel.addHabit(newHabit)
-
                 Toast.makeText(context, "Habit berhasil ditambahkan!", Toast.LENGTH_SHORT).show()
                 val action = CreateHabitFragmentDirections.actionCreateHabitFragmentToDashboardFragment()
                 findNavController().navigate(action)
-
             } else {
                 Toast.makeText(context, "Judul dan Target harus diisi!", Toast.LENGTH_SHORT).show()
             }

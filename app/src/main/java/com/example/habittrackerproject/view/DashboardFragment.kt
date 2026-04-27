@@ -29,9 +29,15 @@ class DashboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(HabitViewModel::class.java)
-        habitAdapter = HabitAdapter(arrayListOf()) { habit ->
-            viewModel.updateProgress(habit)
-        }
+        habitAdapter = HabitAdapter(
+            habitList = arrayListOf(),
+            onAddClick = { habit ->
+                viewModel.updateProgress(habit)
+            },
+            onMinusClick = { habit ->
+                viewModel.updateProgress(habit)
+            }
+        )
 
         binding.recyclerHabit.layoutManager = LinearLayoutManager(context)
         binding.recyclerHabit.adapter = habitAdapter
