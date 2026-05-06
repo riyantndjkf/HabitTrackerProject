@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2026 at 10:05 AM
+-- Generation Time: May 06, 2026 at 05:36 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,6 +32,7 @@ CREATE TABLE `habits` (
   `title` varchar(100) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `target` int(11) DEFAULT NULL,
+  `unit` varchar(50) NOT NULL,
   `progress` int(11) DEFAULT NULL,
   `icon` varchar(50) DEFAULT NULL,
   `status` varchar(20) DEFAULT NULL
@@ -41,9 +42,13 @@ CREATE TABLE `habits` (
 -- Dumping data for table `habits`
 --
 
-INSERT INTO `habits` (`id`, `title`, `description`, `target`, `progress`, `icon`, `status`) VALUES
-(1, 'Minum Air', 'Minum 2 liter air setiap hari', 7, 2, 'water', 'In Progress'),
-(2, 'Makan ', 'Makan ayam 5 kali seminggu', 5, 5, 'food', 'Completed');
+INSERT INTO `habits` (`id`, `title`, `description`, `target`, `unit`, `progress`, `icon`, `status`) VALUES
+(1, 'Read Books', 'Expand your knowledge', 20, 'pages', 20, 'book', 'Completed'),
+(2, 'Exercise', 'Daily workout routine', 30, 'minutes', 16, 'dumbbell', 'In Progress'),
+(3, 'Eat Healthy', 'Consume more vegetables', 3, 'meals', 2, 'food', 'In Progress'),
+(4, 'Play Games', 'Relax and play games', 2, 'hours', 2, 'game', 'Completed'),
+(5, 'Meditation', 'Mindfulness practice', 10, 'minutes', 1, 'meditation', 'In Progress'),
+(6, 'Drink Water', 'Stay hydrated throughout the day', 8, 'glasses', 3, 'water', 'In Progress');
 
 --
 -- Indexes for dumped tables
@@ -63,7 +68,7 @@ ALTER TABLE `habits`
 -- AUTO_INCREMENT for table `habits`
 --
 ALTER TABLE `habits`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

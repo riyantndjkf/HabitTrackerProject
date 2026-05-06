@@ -6,6 +6,7 @@ data class Habit(
     @SerializedName("title") val title: String,
     @SerializedName("description") val description: String,
     @SerializedName("target") val target: Int,
+    @SerializedName("unit") val unit: String,
     @SerializedName("progress") var progress: Int,
     @SerializedName("icon") val icon: String,
     @SerializedName("status") var status: String

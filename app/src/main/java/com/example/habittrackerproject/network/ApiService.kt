@@ -44,6 +44,7 @@ object ApiService {
                 params["description"] = habit.description
                 params["target"] = habit.target.toString()
                 params["progress"] = "0"
+                params["unit"] = habit.unit
                 params["icon"] = habit.icon
                 params["status"] = "In Progress"
                 return params

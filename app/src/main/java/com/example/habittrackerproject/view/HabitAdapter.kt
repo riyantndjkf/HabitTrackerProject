@@ -24,6 +24,7 @@ class HabitAdapter(
         holder.binding.txtTitle.text = habit.title
         holder.binding.txtDescription.text = habit.description
         holder.binding.txtProgress.text = "${habit.progress} / ${habit.target}"
+        holder.binding.txtUnit.text = habit.unit
         holder.binding.tvStatus.text = habit.status
         holder.binding.progressBar.max = habit.target
         holder.binding.progressBar.progress = habit.progress

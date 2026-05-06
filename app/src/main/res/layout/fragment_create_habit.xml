@@ -55,7 +55,7 @@
                 android:inputType="number" />
 
             <EditText
-                android:id="@+id/etUnit"
+                android:id="@+id/txtUnit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Unit"

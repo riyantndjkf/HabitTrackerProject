@@ -40,6 +40,7 @@ class CreateHabitFragment : Fragment() {
             val description = binding.txtDescription.text.toString()
             val targetStr = binding.txtTarget.text.toString()
             val selectedIcon = binding.spCategory.selectedItem.toString()
+            val unitStr = binding.txtUnit.text.toString()
 
             if (title.isNotEmpty() && targetStr.isNotEmpty()) {
                 val newHabit = Habit(
@@ -47,9 +48,11 @@ class CreateHabitFragment : Fragment() {
                     title = title,
                     description = description,
                     target = targetStr.toInt(),
+                    unit = unitStr,
                     progress = 0,
                     icon = selectedIcon,
                     status = "In Progress"
+
                 )
                 viewModel.addHabit(newHabit)
                 Toast.makeText(context, "Habit berhasil ditambahkan!", Toast.LENGTH_SHORT).show()
