@@ -47,9 +47,9 @@ class CreateHabitFragment : Fragment() {
                     id = "",
                     title = title,
                     description = description,
-                    target = targetStr.toInt(),
+                    target = targetStr,
                     unit = unitStr,
-                    progress = 0,
+                    progress = "0",
                     icon = selectedIcon,
                     status = "In Progress"
 

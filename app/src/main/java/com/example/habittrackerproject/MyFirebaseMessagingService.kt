@@ -14,7 +14,6 @@ import com.google.firebase.messaging.RemoteMessage
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(message: RemoteMessage) {
-        super.onMessageReceived(message)
         if (!MainActivity.isVisible) {
             val title = message.notification?.title ?: "N/A"
             val body = message.notification?.body ?: "N/A"
@@ -58,7 +57,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         notificationManager.notify(0, notificationBuilder.build())
     }
     override fun onNewToken(token: String) {
-        super.onNewToken(token)
         Log.d("FCM", "New Token: $token")
     }
 }

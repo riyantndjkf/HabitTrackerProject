@@ -51,9 +51,18 @@ class EditHabitFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         // Setup Icon Spinner
-        val icons = arrayOf("Books", "Water", "Exercise", "Meditation")
+        val icons = arrayOf("Book", "Water", "Dumbbell", "Meditation", "Game", "Food")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, icons)
         binding.spinnerIcon.adapter = adapter
+        
+        binding.spinnerIcon.onItemSelectedListener = object : android.widget.AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: android.widget.AdapterView<*>, view: View?, position: Int, id: Long) {
+                val selectedIcon = icons[position].lowercase()
+                binding.habit?.icon = selectedIcon
+                binding.invalidateAll()
+            }
+            override fun onNothingSelected(parent: android.widget.AdapterView<*>) {}
+        }
         
         binding.btnSubmit.setOnClickListener {
             // "Eksekusi Update: Memastikan eksekusi @Update dipanggil melalui ViewModel agar perubahan pada Room tersimpan sempurna."
