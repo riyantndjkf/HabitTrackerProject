@@ -50,10 +50,8 @@ dependencies {
     val nav_version = "2.7.1"
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
-    implementation("com.android.volley:volley:1.2.1")
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation("com.google.firebase:firebase-messaging:23.4.1")
+    
+    // Database and Core
     implementation("androidx.room:room-runtime:2.8.4")
     kapt("androidx.room:room-compiler:2.8.4")
     implementation(libs.androidx.core.ktx)

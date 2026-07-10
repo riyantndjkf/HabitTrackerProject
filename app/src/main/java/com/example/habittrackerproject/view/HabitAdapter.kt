@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.habittrackerproject.databinding.ItemHabitBinding
 import com.example.habittrackerproject.model.Habit
 import androidx.navigation.findNavController
+import androidx.databinding.DataBindingUtil
+import com.example.habittrackerproject.R
 
 class HabitAdapter(
     val habitList: ArrayList<Habit>,
@@ -15,7 +17,7 @@ class HabitAdapter(
     class HabitViewHolder(var binding: ItemHabitBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HabitViewHolder {
-        val binding = ItemHabitBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding: ItemHabitBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_habit, parent, false)
         return HabitViewHolder(binding)
     }
 
@@ -30,6 +32,12 @@ class HabitAdapter(
             holder.binding.imgIcon.setImageResource(iconResId)
         } else {
             holder.binding.imgIcon.setImageResource(android.R.drawable.ic_menu_gallery)
+        }
+
+        holder.binding.txtTitle.setOnClickListener { view ->
+            val habitIdFromTag = view.tag.toString()
+            val action = DashboardFragmentDirections.actionDashboardFragmentToEditHabitFragment(habitIdFromTag)
+            view.findNavController().navigate(action)
         }
 
         holder.binding.executePendingBindings()

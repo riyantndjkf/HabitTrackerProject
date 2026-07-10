@@ -7,7 +7,11 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import com.example.habittrackerproject.databinding.FragmentEditHabitBinding
 import com.example.habittrackerproject.model.Habit
 import com.example.habittrackerproject.viewmodel.HabitViewModel
@@ -31,29 +35,25 @@ class EditHabitFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(HabitViewModel::class.java)
         
-        // Mocking retrieving habit for Two-way binding demo.
-        // In real use case, fetch from db/viewModel using habitId provided via arguments
-        val habitId = arguments?.getInt("habitId") ?: 0
-        
-        val tempHabit = Habit(
-            id = habitId,
-            title = "Read Books",
-            description = "Expand your knowledge",
-            target = "20",
-            unit = "pages",
-            progress = "0",
-            icon = "books",
-            status = "In Progress"
-        )
-        
-        binding.habit = tempHabit
-        
-        binding.lifecycleOwner = viewLifecycleOwner
-
-        // Setup Icon Spinner
+        val habitId = arguments?.getString("habitId") ?: ""
         val icons = arrayOf("Book", "Water", "Dumbbell", "Meditation", "Game", "Food")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, icons)
         binding.spinnerIcon.adapter = adapter
+
+        // Fetch real habit instead of using dummy
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val dbHabit = viewModel.getHabitById(habitId)
+            
+            withContext(Dispatchers.Main) {
+                if (dbHabit != null) {
+                    binding.habit = dbHabit
+                    binding.lifecycleOwner = viewLifecycleOwner
+
+                    val iconIndex = icons.indexOfFirst { it.equals(dbHabit.icon, ignoreCase = true) }
+                    if (iconIndex >= 0) binding.spinnerIcon.setSelection(iconIndex)
+                }
+            }
+        }
         
         binding.spinnerIcon.onItemSelectedListener = object : android.widget.AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: android.widget.AdapterView<*>, view: View?, position: Int, id: Long) {

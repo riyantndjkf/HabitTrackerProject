@@ -8,12 +8,12 @@ import com.example.habittrackerproject.database.AppDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import com.example.habittrackerproject.model.Habit
-import com.example.habittrackerproject.network.ApiService
+import com.example.habittrackerproject.util.buildDb
 
 class HabitViewModel(application: Application) : AndroidViewModel(application) {
 
     val habitLD = MutableLiveData<List<Habit>>()
-    val db = AppDatabase.getDatabase(application)
+    val db = buildDb(application)
     val habitDao = db.habitDao()
 
     fun refresh() {
@@ -23,6 +23,9 @@ class HabitViewModel(application: Application) : AndroidViewModel(application) {
                 habitLD.value = habits
             }
         }
+    }
+    suspend fun getHabitById(id: String): Habit? {
+        return habitDao.getHabitById(id)
     }
     fun updateProgress(habit: Habit) {
         viewModelScope.launch(Dispatchers.IO) {

@@ -20,7 +20,7 @@ interface HabitDao {
     suspend fun getAllHabits(): List<Habit>
 
     @Query("SELECT * FROM habits WHERE id = :id LIMIT 1")
-    suspend fun getHabitById(id: Int): Habit?
+    suspend fun getHabitById(id: String): Habit?
 
     @Delete
     suspend fun delete(habit: Habit)

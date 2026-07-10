@@ -12,7 +12,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.habittrackerproject.database.AppDatabase
 import com.example.habittrackerproject.databinding.FragmentLoginBinding
 import com.example.habittrackerproject.model.User
+import com.example.habittrackerproject.util.buildDb
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class LoginFragment : Fragment() {
 
@@ -31,7 +34,7 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        db = AppDatabase.getDatabase(requireContext())
+        db = buildDb(requireContext())
 
         val sharedPref =
             requireActivity().getSharedPreferences(
@@ -50,7 +53,7 @@ class LoginFragment : Fragment() {
         }
 
         // Insert user default sekali saja
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.IO) {
 
             val existingUser =
                 db.userDao().getUserByUsername("student")
@@ -74,30 +77,24 @@ class LoginFragment : Fragment() {
             val password =
                 binding.txtPassword.text.toString().trim()
 
-            lifecycleScope.launch {
+            lifecycleScope.launch(Dispatchers.IO) {
+                val user = db.userDao().login(username, password)
 
-                val user =
-                    db.userDao().login(username, password)
+                withContext(Dispatchers.Main) {
+                    if (user != null) {
+                        sharedPref.edit()
+                            .putBoolean("is_logged_in", true)
+                            .apply()
 
-                if (user != null) {
-
-                    sharedPref.edit()
-                        .putBoolean("is_logged_in", true)
-                        .apply()
-
-                    val action =
-                        LoginFragmentDirections
-                            .actionLoginFragmentToDashboardFragment()
-
-                    findNavController().navigate(action)
-
-                } else {
-
-                    Toast.makeText(
-                        context,
-                        "Username atau Password salah!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                        val action = LoginFragmentDirections.actionLoginFragmentToDashboardFragment()
+                        findNavController().navigate(action)
+                    } else {
+                        Toast.makeText(
+                            context,
+                            "Username atau Password salah!",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
         }
