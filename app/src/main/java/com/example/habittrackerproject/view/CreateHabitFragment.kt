@@ -44,7 +44,7 @@ class CreateHabitFragment : Fragment() {
 
             if (title.isNotEmpty() && targetStr.isNotEmpty()) {
                 val newHabit = Habit(
-                    id = "",
+
                     title = title,
                     description = description,
                     target = targetStr,

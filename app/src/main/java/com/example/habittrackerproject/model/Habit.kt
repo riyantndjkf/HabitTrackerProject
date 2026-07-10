@@ -6,8 +6,9 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "habits")
 data class Habit(
-    @PrimaryKey
-    @SerializedName("id") var id: String,
+    @PrimaryKey(autoGenerate = true)
+    @SerializedName("id")
+    val id: Int = 0,
 
     @SerializedName("title") var title: String,
     @SerializedName("description") var description: String,
