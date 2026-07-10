@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2026 at 05:36 PM
+-- Generation Time: Jul 10, 2026 at 09:26 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,6 +50,18 @@ INSERT INTO `habits` (`id`, `title`, `description`, `target`, `unit`, `progress`
 (5, 'Meditation', 'Mindfulness practice', 10, 'minutes', 1, 'meditation', 'In Progress'),
 (6, 'Drink Water', 'Stay hydrated throughout the day', 8, 'glasses', 3, 'water', 'In Progress');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Indexes for dumped tables
 --
@@ -61,6 +73,13 @@ ALTER TABLE `habits`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -69,6 +88,12 @@ ALTER TABLE `habits`
 --
 ALTER TABLE `habits`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
