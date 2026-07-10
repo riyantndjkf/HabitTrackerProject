@@ -1,13 +1,23 @@
 package com.example.habittrackerproject.model
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity(tableName = "habit_table")
 data class Habit(
-    @SerializedName("id") val id: String,
-    @SerializedName("title") val title: String,
-    @SerializedName("description") val description: String,
-    @SerializedName("target") val target: Int,
-    @SerializedName("unit") val unit: String,
-    @SerializedName("progress") var progress: Int,
-    @SerializedName("icon") val icon: String,
+    @PrimaryKey
+    @SerializedName("id") var id: String,
+
+    @SerializedName("title") var title: String,
+    @SerializedName("description") var description: String,
+
+    @SerializedName("target") var target: String,
+
+    @SerializedName("unit") var unit: String,
+
+    @SerializedName("progress") var progress: String,
+
+    @SerializedName("icon") var icon: String,
     @SerializedName("status") var status: String
 )
