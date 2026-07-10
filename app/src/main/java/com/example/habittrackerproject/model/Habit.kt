@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity(tableName = "habit_table")
+@Entity(tableName = "habits")
 data class Habit(
     @PrimaryKey
     @SerializedName("id") var id: String,

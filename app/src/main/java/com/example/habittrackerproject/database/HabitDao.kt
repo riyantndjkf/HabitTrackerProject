@@ -16,10 +16,10 @@ interface HabitDao {
     @Update
     suspend fun update(habit: Habit)
 
-    @Query("SELECT * FROM habit_table")
+    @Query("SELECT * FROM habits")
     suspend fun getAllHabits(): List<Habit>
 
-    @Query("SELECT * FROM habit_table WHERE id = :id LIMIT 1")
+    @Query("SELECT * FROM habits WHERE id = :id LIMIT 1")
     suspend fun getHabitById(id: String): Habit?
 
     @Delete
