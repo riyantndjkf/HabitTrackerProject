@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.habittrackerproject.databinding.FragmentDashboardBinding
+import com.example.habittrackerproject.model.Habit
 import com.example.habittrackerproject.viewmodel.HabitViewModel
 
 class DashboardFragment : Fragment() {
@@ -31,11 +32,38 @@ class DashboardFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(HabitViewModel::class.java)
         habitAdapter = HabitAdapter(
             habitList = arrayListOf(),
-            onAddClick = { habit ->
-                viewModel.updateProgress(habit)
-            },
-            onMinusClick = { habit ->
-                viewModel.updateProgress(habit)
+            listener = object : HabitListener {
+
+                override fun onPlusClick(habit: Habit) {
+                    val progress = habit.progress.toInt()
+                    val target = habit.target.toInt()
+
+                    if (progress < target) {
+                        habit.progress = (progress + 1).toString()
+
+                        if (progress + 1 >= target) {
+                            habit.status = "Completed"
+                        }
+
+                        viewModel.updateProgress(habit)
+                        habitAdapter.notifyDataSetChanged()
+                    }
+                }
+
+                override fun onMinusClick(habit: Habit) {
+                    val progress = habit.progress.toInt()
+
+                    if (progress > 0) {
+                        habit.progress = (progress - 1).toString()
+
+                        if (progress - 1 < habit.target.toInt()) {
+                            habit.status = "In Progress"
+                        }
+
+                        viewModel.updateProgress(habit)
+                        habitAdapter.notifyDataSetChanged()
+                    }
+                }
             }
         )
 

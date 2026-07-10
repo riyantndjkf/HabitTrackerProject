@@ -18,8 +18,8 @@ class HabitViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
     fun updateProgress(habit: Habit) {
-        ApiService.updateHabit(getApplication(), habit)
-        refresh()
+        ApiService.updateHabit(getApplication(), habit) {
+            refresh() }
     }
     fun addHabit(habit: Habit) {
         ApiService.addHabit(getApplication(), habit)

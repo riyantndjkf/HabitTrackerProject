@@ -54,11 +54,11 @@ object ApiService {
         VolleySingleton.getInstance(context).add(request)
     }
 
-    fun updateHabit(context: Context, habit: Habit) {
+    fun updateHabit(context: Context, habit: Habit, onSuccess: () -> Unit) {
         val url = BASE_URL + "updateHabit.php"
 
         val request = object : StringRequest(Method.POST, url,
-            Response.Listener { },
+            Response.Listener { onSuccess() },
             Response.ErrorListener { it.printStackTrace() }) {
 
             override fun getParams(): MutableMap<String, String> {
@@ -66,13 +66,13 @@ object ApiService {
 
                 params["id"] = habit.id
 
-                val status = if (habit.progress >= habit.target) {
+                val status = if (habit.progress.toInt() >= habit.target.toInt()) {
                     "Completed"
                 } else {
                     "In Progress"
                 }
 
-                params["progress"] = habit.progress.toString()
+                params["progress"] = habit.progress
                 params["status"] = status
 
                 return params
