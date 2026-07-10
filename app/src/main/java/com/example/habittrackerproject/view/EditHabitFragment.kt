@@ -33,7 +33,7 @@ class EditHabitFragment : Fragment() {
         
         // Mocking retrieving habit for Two-way binding demo.
         // In real use case, fetch from db/viewModel using habitId provided via arguments
-        val habitId = arguments?.getString("habitId") ?: ""
+        val habitId = arguments?.getInt("habitId") ?: 0
         
         val tempHabit = Habit(
             id = habitId,

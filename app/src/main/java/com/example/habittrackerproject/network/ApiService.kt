@@ -64,7 +64,7 @@ object ApiService {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
 
-                params["id"] = habit.id
+                params["id"] = habit.id.toString()
 
                 val status = if (habit.progress.toInt() >= habit.target.toInt()) {
                     "Completed"
